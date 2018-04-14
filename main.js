@@ -50,11 +50,23 @@ function WeatherData() {
       query += 'lat='+this.lat+'&lon='+this.lon+'&appid='+apiKey;
     }
 
-    $.getJSON(query, function(data) {
-      this.data = data;
-      this.icon = 'https://openweathermap.org/img/w/'+this.data.weather[0].icon+'.png';
-      this.updateWeather();
-    }.bind(this));
+    $.ajax({
+      dataType: 'json',
+      method: 'get',
+      url: query,
+      success: function(data) {
+        this.data = data;
+        this.icon = 'https://openweathermap.org/img/w/'+this.data.weather[0].icon+'.png';
+        this.updateWeather();
+      }.bind(this),
+      error: function(err) {
+        $('h2, h3').text('');
+        $('.weather-info').show();
+        $('.error').text('City not found, try again.').show();
+        $('.weather-icon').removeAttr('src');
+        $('.wind-direction').hide();
+      }
+    });
   }
 
   /**
@@ -115,6 +127,7 @@ function WeatherData() {
     } else {
       $('.wrapper').css('background-image', 'url(night.jpg)');
     }
+    $('.error').text('').hide();
     $('.weather-info').show();
     $('.city').text(this.data.name);
     $('.weather').text(this.data.weather[0].main);
