@@ -19,28 +19,112 @@ h1 {
   width: 80vw;
 }
 
+.header, .zipcode, .geolocation, .weather-info {
+  background: #fff9c0;
+}
+
 .zipcode {
   align-items: center;
   display: flex;
   height: 10vh;
   justify-content: space-around;
+  margin: 40px;
 }
 
 .zipcode input {
+  background-color: #f5f5f5;
+  border: none;
+  height: 30px;
   padding-left: 10px;
   width: 50%;
 }
 
-.zipcode button {
+.zipcode button, .get-location {
+  background: #f5f5f5;
+  border: none;
+  height: 30px;
   width: 25%;
 }
 
 .geolocation {
+  align-items: center;
   display: flex;
+  height: 10vh;
   justify-content: center;
+  margin: 40px;
 }
 
 .weather-info {
+  align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  height: 40vh;
+  margin: 40px;
+}
+
+.weather-data {
+  display: flex;
+}
+
+.temperature {
+  display: flex;
+  justify-content: space-around;
+  width: 50vw;
+}
+
+.wind {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  width: 40vw;
+}
+
+.wind-direction {
+  display: none;
+  height: 100px;
+  width: 100px;
+}
+
+.nort-east {
+  transform: rotate(45deg);
+}
+
+.east {
+  transform: rotate(90deg);
+}
+
+.south-east {
+  transform: rotate(135deg);
+}
+
+.south {
+  transform: rotate(180deg);
+}
+
+.south-west {
+  transform: rotate(235deg);
+}
+
+.west {
+  transform: rotate(270deg);
+}
+
+.north-west {
+  transform: rotate(315deg);
+}
+
+@media screen and (max-width: 500px) {
+  .weather-info, .geolocation, .zipcode {
+    margin: 40px 0;
+  }
+
+  .wind {
+    width: 100%;
+  }
+
+  .wind-direction {
+    height: 50px;;
+    width: 50px;
+  }
 }
