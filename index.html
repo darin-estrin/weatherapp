@@ -14,7 +14,9 @@
 </head>
 <body>
   <div class="wrapper"> <!-- Wrapper Start -->
-    <h1>Weather App</h1>
+    <div class="header">
+      <h1>Weather App</h1>
+    </div>
     <!-- Enter Zipcode -->
     <div class="zipcode">
       <input type="number" placeholder="Zipcode" name="zipcode" id="zipcode">
@@ -26,7 +28,21 @@
     </div>
     <!-- Weather Data -->
     <div class="weather-info">
-      <h2 class="weather"></h2>
+      <h2 class="city"></h2>
+      <div class="weather-data">
+        <h3 class="weather"></h3>
+        <img class="weather-icon">
+      </div>
+
+      <div class="temperature">
+        <h3 class="celcius"></h4>
+        <h3 class="fahrenheit"></h3>
+      </div>
+
+      <div class="wind">
+        <h3 class="wind-speed"></h3>
+        <img src="up_arrow.png" class="wind-direction">
+      </div>
     </div><!-- Weather Data End -->
 
 
