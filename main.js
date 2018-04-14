@@ -33,6 +33,7 @@ function WeatherData() {
   this.lon = null;
   this.lat = null;
   this.data = null;
+  this.icon = null;
 
   /**
    * 
@@ -49,7 +50,35 @@ function WeatherData() {
 
     $.getJSON(query, function(data) {
       this.data = data;
-    });
+      this.icon = 'https://openweathermap.org/img/w/'+this.data.weather[0].icon+'.png';
+      this.updateWeather();
+    }.bind(this));
+  }
+
+  /**
+   * 
+   * @param {number} direction 
+   * the direction the wind is moving in degrees
+   */
+  this.getWindDirection = function(direction) {
+    console.log(direction);
+    if (direction >= 0 && direction < 24 || direction > 337 ) {
+      return 'north';
+    } else if (direction > 23 && direction < 69) {
+      return 'north-east';
+    } else if (direction > 68 && direction < 113) {
+      return 'east';
+    } else if (direction > 112 && direction < 158) {
+      return 'south-east';
+    } else if (direction > 157 && direction < 206) {
+      return 'south';
+    } else if (direction > 205 && direction < 251) {
+      return 'south-west';
+    } else if (direction > 250 && direction < 296) {
+      return 'west';
+    } else {
+      return 'north-west';
+    }
   }
 
   /**
@@ -71,5 +100,23 @@ function WeatherData() {
   this.setZipCode = function(zipcode) {
     this.zipcode = zipcode;
     this.getWeather('zipcode');
+  }
+
+  /**
+   * Updates the DOM with the appropriate data
+   */
+  this.updateWeather = function() {
+    var tempInCel = (this.data.main.temp - 273.15).toFixed(1);
+    var tempInFahr = ((tempInCel * (9 / 5)) + 32).toFixed(1);
+    var windDirection = this.getWindDirection(this.data.wind.deg);
+    $('.city').text(this.data.name);
+    $('.weather').text(this.data.weather[0].main);
+    $('.weather-icon').attr('src', this.icon);
+    $('.celcius').html(tempInCel + '&deg; C');
+    $('.fahrenheit').html(tempInFahr + ' &deg; F');
+    $('.wind-speed').text((this.data.wind.speed * 2.24).toFixed(1) + ' MPH');
+    $('.wind-direction').show().addClass(windDirection);
+    console.log(this.data);
+    console.log(windDirection);
   }
 }
