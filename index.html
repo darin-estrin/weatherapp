@@ -13,14 +13,23 @@
   <script src="main.js"></script>
 </head>
 <body>
-  <div class="wrapper">
+  <div class="wrapper"> <!-- Wrapper Start -->
+    <h1>Weather App</h1>
+    <!-- Enter Zipcode -->
     <div class="zipcode">
-      <input type="number" name="zipcode" id="zipcode">
+      <input type="number" placeholder="Zipcode" name="zipcode" id="zipcode">
       <button class="enter-zipcode">Get Weather</button>
     </div>
+    <!-- Geolocation button -->
     <div class="geolocation">
-      <button class="get-location">Get Location</button>
+      <button class="get-location">Use GPS Location</button>
     </div>
-  </div>
+    <!-- Weather Data -->
+    <div class="weather-info">
+      <h2 class="weather"></h2>
+    </div><!-- Weather Data End -->
+
+
+  </div> <!-- Wrapper End -->
 </body>
 </html>
