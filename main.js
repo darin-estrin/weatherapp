@@ -63,7 +63,6 @@ function WeatherData() {
    * the direction the wind is moving in degrees
    */
   this.getWindDirection = function(direction) {
-    console.log(direction);
     if (direction >= 0 && direction < 24 || direction > 337 ) {
       return 'north';
     } else if (direction > 23 && direction < 69) {
@@ -124,7 +123,5 @@ function WeatherData() {
     $('.fahrenheit').html(tempInFahr + ' &deg; F');
     $('.wind-speed').text((this.data.wind.speed * 2.24).toFixed(1) + ' MPH');
     $('.wind-direction').show().addClass(windDirection);
-    console.log(this.data);
-    console.log(windDirection);
   }
 }
