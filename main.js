@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  $('.weather-info').hide();
+
   var weatherData = new WeatherData();
 
   function getLocation() {
@@ -109,6 +111,12 @@ function WeatherData() {
     var tempInCel = (this.data.main.temp - 273.15).toFixed(1);
     var tempInFahr = ((tempInCel * (9 / 5)) + 32).toFixed(1);
     var windDirection = this.getWindDirection(this.data.wind.deg);
+    if (this.data.weather[0].icon.substr(2) === 'd') {
+      $('.wrapper').css('background-image', 'url(day.jpg)');
+    } else {
+      $('.wrapper').css('background-image', 'url(night.jpg)');
+    }
+    $('.weather-info').show();
     $('.city').text(this.data.name);
     $('.weather').text(this.data.weather[0].main);
     $('.weather-icon').attr('src', this.icon);
